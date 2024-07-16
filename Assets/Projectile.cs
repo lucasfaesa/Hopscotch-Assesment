@@ -1,29 +1,72 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed = 10;
-    public Rigidbody _RB;
-    public float waitTime = 2f;
-    private void Awake()
+    [Header("Event Channel")] 
+    [SerializeField] private MissileEventChannelSO missileEventChannel;
+    [Space]
+    [SerializeField] private MissileDataSO missileData;
+    [SerializeField] private Rigidbody rigidBody;
+    [SerializeField] private GameObject childMesh;
+    
+    private Vector3 _initialPos;
+    private Vector3 _initialRot;
+    
+    private void OnEnable()
     {
-        _RB = GetComponent<Rigidbody>();
-        
+        missileEventChannel.OnMissileLaunched += OnMissileLaunched;
+        missileEventChannel.OnMissileReset += OnMissileReset;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        waitTime -= Time.deltaTime;
-        if (waitTime <= 0)
-        {
-            _RB.velocity = new Vector3(0, 0, -speed);
-        }
+        missileEventChannel.OnMissileLaunched -= OnMissileLaunched;
+        missileEventChannel.OnMissileReset -= OnMissileReset;
     }
+
+    private void Start()
+    {
+        _initialPos = this.transform.position;
+        _initialRot = this.transform.rotation.eulerAngles;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        childMesh.SetActive(false);
+    }
+
+
+    private void OnMissileLaunched(int id)
+    {
+        if (id == missileData.MissileId && missileData.IsReadyToLaunch)
+        {
+            missileData.IsReadyToLaunch = false;
+            
+            rigidBody.AddForce(Vector3.back * missileData.Speed, ForceMode.VelocityChange);
+        }
+    }
+
+    private void OnMissileReset(int id)
+    {
+        if (id == missileData.MissileId)
+        {
+            ResetMissile();
+        }
+    }
+
+    private void ResetMissile()
+    {
+        rigidBody.velocity = Vector3.zero;
+        rigidBody.angularVelocity = Vector3.zero;
+        
+        this.transform.position = _initialPos;
+        this.transform.rotation = Quaternion.Euler(_initialRot);
+        
+        missileData.IsReadyToLaunch = true;
+        
+        childMesh.SetActive(true);
     }
 }
