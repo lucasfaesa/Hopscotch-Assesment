@@ -27,5 +27,11 @@ public class MissilesController : MonoBehaviour
         missileEventChannel.ResetMissile(id);
     }
 
+    public void ResetAllMissile()
+    {
+        missileEventChannel.ResetMissile(0);
+        missileEventChannel.ResetMissile(1);
+        missileEventChannel.ResetMissile(2);
+    }
 
 }

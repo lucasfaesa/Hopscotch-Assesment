@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Missile1Data
   m_EditorClassIdentifier: 
   <MissileId>k__BackingField: 1
-  <ExplosionForce>k__BackingField: 10
+  <ExplosionForce>k__BackingField: 2000
   <ExplosionRadius>k__BackingField: 1
   <UpwardsModifier>k__BackingField: 1
-  <ForceMode>k__BackingField: 1
   <Speed>k__BackingField: 5
   <IsReadyToLaunch>k__BackingField: 1
   <MeshesList>k__BackingField:
