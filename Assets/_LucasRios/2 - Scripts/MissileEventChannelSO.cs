@@ -8,6 +8,7 @@ public class MissileEventChannelSO : ScriptableObject
 {
     public event Action<int> OnMissileLaunched;
     public event Action<int> OnMissileReset;
+    public event Action<int, GlobalEnums.ExplosionIntensity> OnMissileHitTarget;
     public event Action<int, int> OnMissileMeshChanged;
     public event Action<int, int> OnMissileMaterialChanged;
 
@@ -29,5 +30,10 @@ public class MissileEventChannelSO : ScriptableObject
     public void ChangeMissileMaterial(int missileId, int value)
     {
         OnMissileMaterialChanged?.Invoke(missileId, value);
+    }
+
+    public void MissileHitTarget(int missileId, GlobalEnums.ExplosionIntensity intensity)
+    {
+        OnMissileHitTarget?.Invoke(missileId, intensity);
     }
 }

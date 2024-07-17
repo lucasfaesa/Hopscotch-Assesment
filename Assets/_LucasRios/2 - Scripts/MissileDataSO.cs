@@ -21,6 +21,19 @@ public class MissileDataSO : ScriptableObject
     [field:Space]
     [field: SerializeField] public List<Material> MaterialsList { get; set; }
     [field: SerializeField] public int SelectedMaterialIndex { get; set; }
+
+    public GlobalEnums.ExplosionIntensity GetExplosionIntensity()
+    {
+        if (ExplosionForce is >= 1f and < 2000f)
+            return GlobalEnums.ExplosionIntensity.SMALL;
+        if (ExplosionForce is >= 2000f and < 8000f)
+            return GlobalEnums.ExplosionIntensity.MEDIUM;
+        if (ExplosionForce >= 8000f)
+            return GlobalEnums.ExplosionIntensity.BIG;
+
+        Debug.LogError("Not in a measurable force");
+        return GlobalEnums.ExplosionIntensity.SMALL;
+    }
     
     public void Reset()
     {

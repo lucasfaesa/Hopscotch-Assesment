@@ -122,18 +122,29 @@ public class Missile : MonoBehaviour
     {
         _exploded = true;
 
+        
+
         for (int i = 0; i < explosionParticles.Count; i++)
         {
             var shape = explosionParticles[i].shape;
             shape.radius = missileData.ExplosionRadius;
         }
-        
-        if(missileData.ExplosionForce is >= 1f and < 2000f)
-            explosionParticles[0].Play();
-        if(missileData.ExplosionForce is >= 2000f and < 8000f)
-            explosionParticles[1].Play();
-        if(missileData.ExplosionForce >= 8000f)
-            explosionParticles[2].Play();
+
+        switch (missileData.GetExplosionIntensity())
+        {
+            case GlobalEnums.ExplosionIntensity.SMALL:
+                explosionParticles[0].Play();
+                missileEventChannel.MissileHitTarget(missileData.MissileId, GlobalEnums.ExplosionIntensity.SMALL);
+                break;
+            case GlobalEnums.ExplosionIntensity.MEDIUM:
+                explosionParticles[1].Play();
+                missileEventChannel.MissileHitTarget(missileData.MissileId, GlobalEnums.ExplosionIntensity.MEDIUM);
+                break;
+            case GlobalEnums.ExplosionIntensity.BIG:
+                explosionParticles[2].Play();
+                missileEventChannel.MissileHitTarget(missileData.MissileId, GlobalEnums.ExplosionIntensity.BIG);
+                break;
+        }
         
         
         Vector3 explosionPos = transform.position;
