@@ -12,6 +12,9 @@ public class MissileSettingsController : MonoBehaviour
     [SerializeField] private MissileDataSO missileData;
     
     [Header("Components")] 
+    [SerializeField] private Slider speedSlider;
+    [SerializeField] private TextMeshProUGUI speedValueText;
+    [Space]
     [SerializeField] private Slider explosionForceSlider;
     [SerializeField] private TextMeshProUGUI explosionForceValueText;
     [Space]
@@ -34,6 +37,9 @@ public class MissileSettingsController : MonoBehaviour
 
     private void InitializeComponents()
     {
+        speedSlider.SetValueWithoutNotify(missileData.Speed);
+        speedValueText.text = missileData.Speed.ToString("F1");
+        
         explosionForceSlider.SetValueWithoutNotify(missileData.ExplosionForce);
         explosionForceValueText.text = missileData.ExplosionForce.ToString("F1");
         
@@ -68,6 +74,12 @@ public class MissileSettingsController : MonoBehaviour
         materialsDropdown.RefreshShownValue();
     }
 
+    public void AdjustSpeed(float value)
+    {
+        missileData.Speed = value;
+        speedValueText.text = value.ToString("F1");
+    }
+    
     public void AdjustExplosiveForce(float value)
     {
         missileData.ExplosionForce = value;

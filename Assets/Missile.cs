@@ -13,9 +13,14 @@ public class Missile : MonoBehaviour
     [SerializeField] private GameObject childObject;
     [SerializeField] private MeshFilter childMeshFilter;
     [SerializeField] private MeshRenderer childMeshRenderer;
+    [SerializeField] private List<ParticleSystem> rocketParticles;
     
     private Vector3 _initialPos;
     private Vector3 _initialRot;
+    
+    private float _maxTravelTime = 5f;
+    
+    private Coroutine travelTimeRoutine;
     
     private void OnEnable()
     {
@@ -45,6 +50,8 @@ public class Missile : MonoBehaviour
         rigidBody.velocity = Vector3.zero;
         rigidBody.angularVelocity = Vector3.zero;
         
+        rocketParticles.ForEach(x=>x.Stop());
+        
         Explode();
     }
 
@@ -54,9 +61,30 @@ public class Missile : MonoBehaviour
         if (id == missileData.MissileId && missileData.IsReadyToLaunch)
         {
             missileData.IsReadyToLaunch = false;
-            
+               
             rigidBody.AddForce(Vector3.back * missileData.Speed, ForceMode.VelocityChange);
+
+            if(missileData.Speed is >= 1f and < 3f)
+                rocketParticles[0].Play();
+            if(missileData.Speed is >= 3f and < 6f)
+                rocketParticles[1].Play();
+            if(missileData.Speed >= 6f)
+                rocketParticles[2].Play();
+            
+            if(travelTimeRoutine != null)
+                StopCoroutine(travelTimeRoutine);
+
+            travelTimeRoutine = StartCoroutine(CountTravelTime());
         }
+    }
+
+    private IEnumerator CountTravelTime()
+    {
+        yield return new WaitForSeconds(_maxTravelTime);
+
+        if (missileData.IsReadyToLaunch) yield break;
+
+        OnTriggerEnter(null);
     }
 
     private void OnMissileReset(int id)
@@ -76,6 +104,8 @@ public class Missile : MonoBehaviour
         this.transform.rotation = Quaternion.Euler(_initialRot);
         
         missileData.IsReadyToLaunch = true;
+        
+        rocketParticles.ForEach(x=>x.Stop());
         
         childObject.SetActive(true);
     }
