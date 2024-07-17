@@ -11,7 +11,6 @@ public class MissileDataSO : ScriptableObject
     [field: SerializeField] public float ExplosionForce { get; set; } = 10f;
     [field: SerializeField] public float ExplosionRadius { get; set; } = 1f;
     [field: SerializeField] public float UpwardsModifier { get; set; } = 1f;
-    [field: SerializeField] public ForceMode ForceMode { get; set; } = ForceMode.Impulse;
     
     [field:Header("Missile Settings")]
     [field: SerializeField] public float Speed { get; set; } = 5;

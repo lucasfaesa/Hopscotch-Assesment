@@ -13,7 +13,10 @@ public class Missile : MonoBehaviour
     [SerializeField] private GameObject childObject;
     [SerializeField] private MeshFilter childMeshFilter;
     [SerializeField] private MeshRenderer childMeshRenderer;
+    [Space]
     [SerializeField] private List<ParticleSystem> rocketParticles;
+    [Space]
+    [SerializeField] private List<ParticleSystem> explosionParticles;
     
     private Vector3 _initialPos;
     private Vector3 _initialRot;
@@ -21,6 +24,8 @@ public class Missile : MonoBehaviour
     private float _maxTravelTime = 5f;
     
     private Coroutine travelTimeRoutine;
+
+    private bool _exploded;
     
     private void OnEnable()
     {
@@ -82,7 +87,7 @@ public class Missile : MonoBehaviour
     {
         yield return new WaitForSeconds(_maxTravelTime);
 
-        if (missileData.IsReadyToLaunch) yield break;
+        if (_exploded) yield break;
 
         OnTriggerEnter(null);
     }
@@ -94,22 +99,7 @@ public class Missile : MonoBehaviour
             ResetMissile();
         }
     }
-
-    private void ResetMissile()
-    {
-        rigidBody.velocity = Vector3.zero;
-        rigidBody.angularVelocity = Vector3.zero;
-        
-        this.transform.position = _initialPos;
-        this.transform.rotation = Quaternion.Euler(_initialRot);
-        
-        missileData.IsReadyToLaunch = true;
-        
-        rocketParticles.ForEach(x=>x.Stop());
-        
-        childObject.SetActive(true);
-    }
-
+    
     private void ChangeMesh(int missileId, int meshIndex)
     {
         if (missileId == missileData.MissileId)
@@ -130,6 +120,22 @@ public class Missile : MonoBehaviour
 
     private void Explode()
     {
+        _exploded = true;
+
+        for (int i = 0; i < explosionParticles.Count; i++)
+        {
+            var shape = explosionParticles[i].shape;
+            shape.radius = missileData.ExplosionRadius;
+        }
+        
+        if(missileData.ExplosionForce is >= 1f and < 200f)
+            explosionParticles[0].Play();
+        if(missileData.ExplosionForce is >= 200f and < 400f)
+            explosionParticles[1].Play();
+        if(missileData.ExplosionForce >= 400f)
+            explosionParticles[2].Play();
+        
+        
         Vector3 explosionPos = transform.position;
         
         Collider[] hitColliders = new Collider[10];
@@ -146,8 +152,25 @@ public class Missile : MonoBehaviour
                     continue;
                 
                 rb.AddExplosionForce(missileData.ExplosionForce, explosionPos,  missileData.ExplosionRadius, 
-                    missileData.UpwardsModifier, missileData.ForceMode);
+                    missileData.UpwardsModifier, ForceMode.Impulse);
             }
         }
+    }
+    
+    private void ResetMissile()
+    {
+        _exploded = false;
+        
+        rigidBody.velocity = Vector3.zero;
+        rigidBody.angularVelocity = Vector3.zero;
+        
+        this.transform.position = _initialPos;
+        this.transform.rotation = Quaternion.Euler(_initialRot);
+        
+        missileData.IsReadyToLaunch = true;
+        
+        rocketParticles.ForEach(x=>x.Stop());
+        
+        childObject.SetActive(true);
     }
 }

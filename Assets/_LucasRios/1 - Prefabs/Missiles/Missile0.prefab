@@ -87,6 +87,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5321058210412682553, guid: 57109f5dddb99d441954be5718862ed3,
+        type: 3}
+      propertyPath: m_Name
+      value: RocketParticles
+      objectReference: {fileID: 0}
     - target: {fileID: 8007381348714546494, guid: 57109f5dddb99d441954be5718862ed3,
         type: 3}
       propertyPath: InitialModule.startSize.scalar

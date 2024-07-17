@@ -23,8 +23,6 @@ public class MissileSettingsController : MonoBehaviour
     [Space]
     [SerializeField] private Slider upwardsForceSlider;
     [SerializeField] private TextMeshProUGUI upwardsModifierValueText;
-    [Space] 
-    [SerializeField] private TMP_Dropdown forceModeDropdown;
     [Space]
     [SerializeField] private TMP_Dropdown meshesDropdown;
     [Space]
@@ -48,16 +46,6 @@ public class MissileSettingsController : MonoBehaviour
         
         upwardsForceSlider.SetValueWithoutNotify(missileData.UpwardsModifier);
         upwardsModifierValueText.text = missileData.UpwardsModifier.ToString("F1");
-
-        switch (missileData.ForceMode)
-        {
-            case ForceMode.Impulse:
-                forceModeDropdown.SetValueWithoutNotify(0);    
-            break;
-            case ForceMode.VelocityChange:
-                forceModeDropdown.SetValueWithoutNotify(1);
-            break;
-        }
         
         foreach (Mesh mesh in missileData.MeshesList)
         {
@@ -96,19 +84,6 @@ public class MissileSettingsController : MonoBehaviour
     {
         missileData.UpwardsModifier = value;
         upwardsModifierValueText.text = value.ToString("F1");
-    }
-    
-    public void AdjustForceMode(int value)
-    {
-        switch (value)
-        {
-            case 0:
-                missileData.ForceMode = ForceMode.Impulse;
-                break;
-            case 1:
-                missileData.ForceMode = ForceMode.VelocityChange;
-            break;
-        }
     }
 
     public void ChangeModel(int value)
