@@ -5228,6 +5228,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7233197653954740084, guid: cd0f0c2d93fb2e14dbdc641749952b63,
         type: 3}
+      propertyPath: m_MinValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233197653954740084, guid: cd0f0c2d93fb2e14dbdc641749952b63,
+        type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -6452,6 +6457,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_MaxValue
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233197653954740084, guid: cd0f0c2d93fb2e14dbdc641749952b63,
+        type: 3}
+      propertyPath: m_MinValue
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7233197653954740084, guid: cd0f0c2d93fb2e14dbdc641749952b63,
         type: 3}
@@ -8778,6 +8788,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_MaxValue
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233197653954740084, guid: cd0f0c2d93fb2e14dbdc641749952b63,
+        type: 3}
+      propertyPath: m_MinValue
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7233197653954740084, guid: cd0f0c2d93fb2e14dbdc641749952b63,
         type: 3}

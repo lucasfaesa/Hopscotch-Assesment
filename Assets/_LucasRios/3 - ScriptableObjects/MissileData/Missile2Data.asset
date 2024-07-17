@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Missile2Data
   m_EditorClassIdentifier: 
   <MissileId>k__BackingField: 2
-  <ExplosionForce>k__BackingField: 10
-  <ExplosionRadius>k__BackingField: 1
-  <UpwardsModifier>k__BackingField: 1
-  <ForceMode>k__BackingField: 1
-  <Speed>k__BackingField: 5
-  <IsReadyToLaunch>k__BackingField: 1
+  <ExplosionForce>k__BackingField: 9175.526
+  <ExplosionRadius>k__BackingField: 4.581181
+  <UpwardsModifier>k__BackingField: 1.350333
+  <Speed>k__BackingField: 1
+  <IsReadyToLaunch>k__BackingField: 0
   <MeshesList>k__BackingField:
   - {fileID: 4300000, guid: dd38f665ad77be340856868cb8cecb1f, type: 3}
   - {fileID: 4300000, guid: 85cc38624ef3ca746aadd9e5364dab2d, type: 3}
@@ -58,4 +57,4 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 6c121e11c1fbe994a928335538344c18, type: 2}
   - {fileID: 2100000, guid: e941d0d6425697b499256f89933a0df2, type: 2}
   - {fileID: 2100000, guid: 565175fc23adbb8479f5ec980a7227a5, type: 2}
-  <SelectedMaterialIndex>k__BackingField: 0
+  <SelectedMaterialIndex>k__BackingField: 5

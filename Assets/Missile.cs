@@ -176,6 +176,9 @@ public class Missile : MonoBehaviour
     {
         _exploded = false;
         
+        if(travelTimeRoutine != null)
+            StopCoroutine(travelTimeRoutine);
+        
         rigidBody.velocity = Vector3.zero;
         rigidBody.angularVelocity = Vector3.zero;
         

@@ -19,6 +19,9 @@ public class MissilesController : MonoBehaviour
     
     public void LaunchMissile(int id)
     {
+        if (!missileData[id].IsReadyToLaunch)
+            return;
+        
         missileEventChannel.LaunchMissile(id);
     }
 
