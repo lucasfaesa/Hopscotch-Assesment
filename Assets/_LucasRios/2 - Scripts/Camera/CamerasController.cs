@@ -40,6 +40,25 @@ public class CamerasController : MonoBehaviour
         _cinematicCameraNoiseComponent = cinematicModeCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
+    public void ChangeDefaultCameraPos(int pos)
+    {
+        switch (pos)
+        {
+            case 0:
+                defaultCamera.transform.localPosition = new Vector3(4.044125f,4.694639f,19.02609f);
+                defaultCamera.transform.localRotation = Quaternion.Euler(new Vector3(13.579f,193.751f,0f));
+                break;
+            case 1:
+                defaultCamera.transform.localPosition = new Vector3(22.52535f,14.54672f,22.22963f);
+                defaultCamera.transform.localRotation = Quaternion.Euler(new Vector3(16.329f,215.685f,0f));
+                break;
+            case 2:
+                defaultCamera.transform.localPosition = new Vector3(2.45992f, 2.255448f, -78.59266f);
+                defaultCamera.transform.localRotation = Quaternion.Euler(new Vector3(-7.047f, -12.994f,0f));
+                break;
+        }
+    }
+
     public void SetCinematicMode(bool status)
     {
         defaultCamera.Priority = status ? 0 : 1;
