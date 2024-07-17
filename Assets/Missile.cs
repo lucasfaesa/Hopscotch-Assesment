@@ -122,7 +122,8 @@ public class Missile : MonoBehaviour
     {
         _exploded = true;
 
-        
+        if(travelTimeRoutine != null)
+            StopCoroutine(travelTimeRoutine);
 
         for (int i = 0; i < explosionParticles.Count; i++)
         {
