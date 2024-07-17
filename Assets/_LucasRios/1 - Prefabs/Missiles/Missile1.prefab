@@ -133,5 +133,25 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5044251627878890050, guid: 57109f5dddb99d441954be5718862ed3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.161
+      objectReference: {fileID: 0}
+    - target: {fileID: 6294601536933372387, guid: 57109f5dddb99d441954be5718862ed3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.389
+      objectReference: {fileID: 0}
+    - target: {fileID: 8367371203306359232, guid: 57109f5dddb99d441954be5718862ed3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.38900018
+      objectReference: {fileID: 0}
+    - target: {fileID: 9094124203814145557, guid: 57109f5dddb99d441954be5718862ed3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.38900018
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57109f5dddb99d441954be5718862ed3, type: 3}
