@@ -128,11 +128,11 @@ public class Missile : MonoBehaviour
             shape.radius = missileData.ExplosionRadius;
         }
         
-        if(missileData.ExplosionForce is >= 1f and < 200f)
+        if(missileData.ExplosionForce is >= 1f and < 2000f)
             explosionParticles[0].Play();
-        if(missileData.ExplosionForce is >= 200f and < 400f)
+        if(missileData.ExplosionForce is >= 2000f and < 8000f)
             explosionParticles[1].Play();
-        if(missileData.ExplosionForce >= 400f)
+        if(missileData.ExplosionForce >= 8000f)
             explosionParticles[2].Play();
         
         
