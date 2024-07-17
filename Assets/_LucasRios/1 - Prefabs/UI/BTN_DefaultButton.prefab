@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3072233787881749399}
   - component: {fileID: 3974244665430462079}
   m_Layer: 5
-  m_Name: BTN_DefaultButton_LucasRios
+  m_Name: BTN_DefaultButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

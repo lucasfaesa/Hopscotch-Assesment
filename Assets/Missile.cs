@@ -51,6 +51,9 @@ public class Missile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (_exploded)
+            return;
+
         childObject.SetActive(false);
         rigidBody.velocity = Vector3.zero;
         rigidBody.angularVelocity = Vector3.zero;
