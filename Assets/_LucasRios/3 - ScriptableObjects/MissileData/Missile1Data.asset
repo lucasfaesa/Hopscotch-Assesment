@@ -13,4 +13,49 @@ MonoBehaviour:
   m_Name: Missile1Data
   m_EditorClassIdentifier: 
   <MissileId>k__BackingField: 1
+  <ExplosionForce>k__BackingField: 10
+  <ExplosionRadius>k__BackingField: 1
+  <UpwardsModifier>k__BackingField: 1
+  <ForceMode>k__BackingField: 1
   <Speed>k__BackingField: 5
+  <IsReadyToLaunch>k__BackingField: 1
+  <MeshesList>k__BackingField:
+  - {fileID: 4300000, guid: dd38f665ad77be340856868cb8cecb1f, type: 3}
+  - {fileID: 4300000, guid: 85cc38624ef3ca746aadd9e5364dab2d, type: 3}
+  - {fileID: 4300000, guid: 11b6a2a1744ae1c459ae1aba3087bdeb, type: 3}
+  - {fileID: 4300000, guid: 269b9293741734440bf6d3ae8b0ecdfc, type: 3}
+  - {fileID: 4300000, guid: e5f0ae5b87045c94e98a3a3f91b6dc85, type: 3}
+  - {fileID: 4300000, guid: 0094b425812d49548913a84e817fac7e, type: 3}
+  - {fileID: 4300000, guid: 84a51c006a270a441a3abc0526b64060, type: 3}
+  - {fileID: 4300000, guid: 68c7945bd83bbc24488f8d6223436435, type: 3}
+  - {fileID: 4300000, guid: d705a6b4d5784b04fa56134079f39e6d, type: 3}
+  - {fileID: 4300000, guid: 70885693ea99b8749b751f80202232a3, type: 3}
+  - {fileID: 4300000, guid: c4d63855570bf684fad9b96d6e315096, type: 3}
+  - {fileID: 4300000, guid: 2cc0d580e1f45a54fbcde2699abadfbe, type: 3}
+  - {fileID: 4300000, guid: aaf66b32fc1a1274dac9428916a9f512, type: 3}
+  - {fileID: 4300000, guid: 22eca42868f30c24ab3c2f251d237633, type: 3}
+  - {fileID: 4300000, guid: 1f5bb1d04294e7d4280a3a40b527ac3e, type: 3}
+  - {fileID: 4300000, guid: 5fd96a7c4093fe34584ee81d09520bea, type: 3}
+  - {fileID: 4300000, guid: f609dd87b50e7a84e901dbd4b54f69cf, type: 3}
+  - {fileID: 4300000, guid: 40ef98e103c383440b8db4bf4a650469, type: 3}
+  - {fileID: 4300000, guid: 70b1c37933702514a9b7c1cded1042d3, type: 3}
+  - {fileID: 4300000, guid: e675672c9efbede4ba2c974ad7f24bd1, type: 3}
+  - {fileID: 4300000, guid: 377c635e6ac08e6419ccdc298b66e44b, type: 3}
+  - {fileID: 4300000, guid: 2ccc24499812f424389f3c1c4eb4edb6, type: 3}
+  - {fileID: 4300000, guid: b870450fc3cf4b148af930fc85b1cb33, type: 3}
+  - {fileID: 4300000, guid: 55261aca0a15d2b4481a680795f343ec, type: 3}
+  - {fileID: 4300000, guid: a24750d7eb60fe945b3ff61bfd264da3, type: 3}
+  - {fileID: 4300000, guid: e161d2913bca37a44a645d97c1e0c715, type: 3}
+  - {fileID: 4300000, guid: ed244208472a4e048835974f57110a96, type: 3}
+  - {fileID: 4300000, guid: 5bb10a455c42fbd4db3364f122c26a79, type: 3}
+  - {fileID: 4300000, guid: 93aa6b0374cbc5d429b7fef4523e1650, type: 3}
+  <SelectedMeshIndex>k__BackingField: 0
+  <MaterialsList>k__BackingField:
+  - {fileID: 2100000, guid: dadefef0edf68504b971d5e8b275586d, type: 2}
+  - {fileID: 2100000, guid: effb278466e36474989bd577f63840b1, type: 2}
+  - {fileID: 2100000, guid: 3fe3bbcc093ebdb4391d77116c4275e0, type: 2}
+  - {fileID: 2100000, guid: b1fe464b75e438e43a558970be8913c3, type: 2}
+  - {fileID: 2100000, guid: 6c121e11c1fbe994a928335538344c18, type: 2}
+  - {fileID: 2100000, guid: e941d0d6425697b499256f89933a0df2, type: 2}
+  - {fileID: 2100000, guid: 565175fc23adbb8479f5ec980a7227a5, type: 2}
+  <SelectedMaterialIndex>k__BackingField: 0

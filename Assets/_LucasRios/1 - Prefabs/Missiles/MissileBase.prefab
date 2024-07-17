@@ -51,7 +51,9 @@ MonoBehaviour:
     type: 2}
   missileData: {fileID: 11400000, guid: 37503b442458a5d4d99da2906b804d7d, type: 2}
   rigidBody: {fileID: 4614147777531363496}
-  childMesh: {fileID: 4614147777536618124}
+  childObject: {fileID: 4614147777536618124}
+  childMeshFilter: {fileID: 4614147777533424268}
+  childMeshRenderer: {fileID: 4614147777534423116}
 --- !u!54 &4614147777531363496
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -154,6 +156,18 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 565175fc23adbb8479f5ec980a7227a5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f5bb1d04294e7d4280a3a40b527ac3e, type: 3}
+--- !u!33 &4614147777533424268 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 3300000, guid: 1f5bb1d04294e7d4280a3a40b527ac3e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4614147777536714796}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4614147777534423116 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2300000, guid: 1f5bb1d04294e7d4280a3a40b527ac3e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4614147777536714796}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4614147777536618124 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 1f5bb1d04294e7d4280a3a40b527ac3e,
