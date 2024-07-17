@@ -4,19 +4,24 @@ using System.Collections.Generic;
 using Cinemachine;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CamerasController : MonoBehaviour
 {
     [Header("SOs")] 
-    [SerializeField] private MissileEventChannelSO missileEventChannel; 
+    [SerializeField] private CameraEventsChannelSO cameraEventsChannel;
+    [SerializeField] private MissileEventChannelSO missileEventChannel;
+    [Space] 
+    [SerializeField] private Toggle cinematicToggle;
     [Space]
     [SerializeField] private CinemachineVirtualCamera defaultCamera;
     [SerializeField] private CinemachineVirtualCamera cinematicModeCamera;
+    [Space]
+    [SerializeField] private NoiseSettings SIXDCameraShake;
+    [SerializeField] private NoiseSettings SIXDWobbleShake;
     [Space] 
     [SerializeField] private List<Transform> missilesTransform;
     [SerializeField] private List<Transform> targetsTransform;
-    [Space]
-    [SerializeField] private NoiseSettings SIXDCameraShake;
 
     private Coroutine _shakeRoutine;
     private CinemachineBasicMultiChannelPerlin _defaultCameraNoiseComponent;
@@ -42,6 +47,8 @@ public class CamerasController : MonoBehaviour
 
     public void ChangeDefaultCameraPos(int pos)
     {
+        SetCinematicMode(false);
+        
         switch (pos)
         {
             case 0:
@@ -63,6 +70,9 @@ public class CamerasController : MonoBehaviour
     {
         defaultCamera.Priority = status ? 0 : 1;
         cinematicModeCamera.Priority = status ? 1 : 0;
+        cameraEventsChannel.InCinematicMode = status;
+        //some redundancy, this method can be called outside the toggle event
+        cinematicToggle.SetIsOnWithoutNotify(status);
     }
 
     private void SetCinematicFollowAndTarget(int missileId)
@@ -73,19 +83,20 @@ public class CamerasController : MonoBehaviour
     
     private void DoCameraShake(int _, GlobalEnums.ExplosionIntensity explosionIntensity)
     {
+        //if()
         if(_shakeRoutine != null)
             StopCoroutine(_shakeRoutine);
         
         switch (explosionIntensity)
         {
             case GlobalEnums.ExplosionIntensity.SMALL:
-                _shakeRoutine = StartCoroutine(ShakeCameraRoutine(0.3f, SIXDCameraShake, 0.26f, 0.1f));
+                _shakeRoutine = StartCoroutine(ShakeCameraRoutine(0.5f, SIXDCameraShake, 0.26f, 0.1f));
                 break;
             case GlobalEnums.ExplosionIntensity.MEDIUM:
-                
+                _shakeRoutine = StartCoroutine(ShakeCameraRoutine(1.6f, SIXDCameraShake, 1.17f, 0.1f));
                 break;
             case GlobalEnums.ExplosionIntensity.BIG:
-                
+                _shakeRoutine = StartCoroutine(ShakeCameraRoutine(1.9f, SIXDWobbleShake, 3.88f, 0.32f));
                 break;
         }
     }
@@ -97,13 +108,8 @@ public class CamerasController : MonoBehaviour
         _defaultCameraNoiseComponent.m_AmplitudeGain = amplitude;
         _defaultCameraNoiseComponent.m_FrequencyGain = frequency;
         
-        _cinematicCameraNoiseComponent.m_NoiseProfile = noise;
-        _cinematicCameraNoiseComponent.m_AmplitudeGain = amplitude;
-        _cinematicCameraNoiseComponent.m_FrequencyGain = frequency;
-        
         yield return new WaitForSeconds(duration);
         _defaultCameraNoiseComponent.m_NoiseProfile = null;
-        _cinematicCameraNoiseComponent.m_NoiseProfile = null;
     }
     
 }
