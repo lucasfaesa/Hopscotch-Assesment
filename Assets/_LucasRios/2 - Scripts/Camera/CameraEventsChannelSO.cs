@@ -19,5 +19,9 @@ public class CameraEventsChannelSO : ScriptableObject
              _inCinematicMode = value;
         }
     }
-    
+
+    public void Reset()
+    {
+        _inCinematicMode = false;
+    }
 }

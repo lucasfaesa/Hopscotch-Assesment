@@ -41,6 +41,8 @@ public class CamerasController : MonoBehaviour
 
     private void Start()
     {
+        cameraEventsChannel.Reset();
+        
         _defaultCameraNoiseComponent = defaultCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         _cinematicCameraNoiseComponent = cinematicModeCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
