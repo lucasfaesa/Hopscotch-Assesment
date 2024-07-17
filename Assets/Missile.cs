@@ -88,7 +88,7 @@ public class Missile : MonoBehaviour
 
     private IEnumerator CountTravelTime()
     {
-        yield return new WaitForSeconds(_maxTravelTime);
+        yield return new WaitForSecondsRealtime(_maxTravelTime);
 
         if (_exploded) yield break;
 
@@ -134,6 +134,29 @@ public class Missile : MonoBehaviour
             shape.radius = missileData.ExplosionRadius;
         }
 
+        
+        
+        Vector3 explosionPos = transform.position;
+        
+        Collider[] hitColliders = new Collider[10];
+        var size = Physics.OverlapSphereNonAlloc(explosionPos, missileData.ExplosionRadius, hitColliders);
+        
+        foreach (Collider hit in hitColliders)
+        {
+            if (!hit)
+                break;
+            
+            if(hit.TryGetComponent(out Rigidbody rb))
+            {
+                if (rb == rigidBody)
+                    continue;
+                
+                rb.AddExplosionForce(missileData.ExplosionForce, explosionPos,  missileData.ExplosionRadius, 
+                    missileData.UpwardsModifier, ForceMode.Impulse);
+            }
+        }
+        
+        
         switch (missileData.GetExplosionIntensity())
         {
             case GlobalEnums.ExplosionIntensity.SMALL:
@@ -148,27 +171,6 @@ public class Missile : MonoBehaviour
                 explosionParticles[2].Play();
                 missileEventChannel.MissileHitTarget(missileData.MissileId, GlobalEnums.ExplosionIntensity.BIG);
                 break;
-        }
-        
-        
-        Vector3 explosionPos = transform.position;
-        
-        Collider[] hitColliders = new Collider[10];
-        var size = Physics.OverlapSphereNonAlloc(explosionPos, missileData.ExplosionRadius, hitColliders);
-        
-        foreach (Collider hit in hitColliders)
-        {
-            if (!hit)
-                return;
-            
-            if(hit.TryGetComponent(out Rigidbody rb))
-            {
-                if (rb == rigidBody)
-                    continue;
-                
-                rb.AddExplosionForce(missileData.ExplosionForce, explosionPos,  missileData.ExplosionRadius, 
-                    missileData.UpwardsModifier, ForceMode.Impulse);
-            }
         }
     }
     
